@@ -14,15 +14,15 @@ const Music = db.define(
       type: DataTypes.STRING,
       allowNull: false
     },
-    sound: {
+    lien: {
       type: DataTypes.STRING,
       allowNull: false
     },
-    title: {
+    nom: {
       type: DataTypes.STRING,
       allowNull: false
     },
-    category: {
+    artiste: {
       type: DataTypes.STRING,
       allowNull: false
     }

@@ -1,14 +1,14 @@
 const express = require('express');
 const router = express.Router();
-const controllerMusic = require('./../controller/Music');
-const {random} = require('./../controller/Music');
+const controllerMusic = require('../controller/music');
+const { random } = require('../controller/music');
 
-router.get("/", (req,res) => {
-    res.status(200).json({success: "racine API"});
+router.get("/", (req, res) => {
+    res.status(200).json({ success: "racine API" });
 });
 
 router.post('/', (req, res) => {
-    res.status(200).json({ success: 'Bravo'});
+    res.status(200).json({ success: 'Bravo' });
 });
 
 

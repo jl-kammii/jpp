@@ -36,6 +36,15 @@ const controllerMusic =
         return res.status(200).json({ result: data[id - 1] })
     },
 
+    delete: async (req, res) => {
+        const idMusic = req.param.id;
+        const data = await Music.destroy({
+            where: {
+                id: id
+            }
+        })
+        res.status(200).json({ message: "Supression effectuée" })
+    },
     random: (req, res) => {
 
     }
