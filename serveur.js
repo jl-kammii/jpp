@@ -18,9 +18,15 @@ app.use(`/api/${version}`, router);
 // Middleware pour afficher la documentation Swagger
 app.use(`/api-docs`, swaggerUi.serve, swaggerUi.setup(option));
 
-db.sync().then(() => {
+db.sync({ force: true }).then(() => {
   console.log('DBConnect est synchronisé')
   app.listen(port, () => {
     console.log(`Example app listening at http://localhost:${port}`);
   });
+
+  const data = require('./model/data.json');
+  const Music = require('./model/Music');
+  data.forEach(async (music) => {
+    await Music.create(music);
+  })
 })
