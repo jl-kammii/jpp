@@ -1,20 +1,24 @@
 const express = require('express');
-const cors = require('cors')
-const app = express()
-const port = 3000
-const version = "v1"
-const router = require('./routes/routes');
+const cors = require('cors');
 const swaggerUi = require('swagger-ui-express');
-const swaggerJsdoc = require('swagger-jsdoc');
-const options = require('./swagger.json');
-const specs = swaggerJsdoc(options);
+const swaggerDocument = require('./swagger.json'); // Importez votre fichier JSON Swagger ici
+const port = 3000;
+const version = 'v1';
+const router = require('./routes/routes');
+const app = express();
+const db = require('./DB/dbConnect')
 
-app.use(cors())
+app.use(cors());
 app.use(express.json());
-app.use(express.urlencoded({extended: true}));
+app.use(express.urlencoded({ extended: true }));
 app.use(`/api/${version}`, router);
-app.use( `/api/${version}/api-docs`, swaggerUi.serve, swaggerUi.setup(specs, { explorer : true }));
 
-app.listen(port, () => {
-  console.log(`Example app listening on port ${port}`)
-});
+// Middleware pour afficher la documentation Swagger
+app.use(`/api-docs`, swaggerUi.serve, swaggerUi.setup(swaggerDocument));
+
+db.sync().then(() => {
+  console.log('DBConnect est synchronisé')
+  app.listen(port, () => {
+    console.log(`Example app listening at http://localhost:${port}`);
+  });
+})
