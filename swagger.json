@@ -18,6 +18,9 @@
         "servers": [
             {
                 "url": "http://localhost:3000/api/v1"
+            },
+            {
+                "url": "https://api-jukebox-ehw8.onrender.com/api/v1"
             }
         ],
         "components": {
